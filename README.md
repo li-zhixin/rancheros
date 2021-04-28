@@ -8,7 +8,7 @@ Do not restart automatically after installation. Shutdown the machine and discon
 ```bash
 $ sudo mkfs.ext4 -L RANCHER_STATE /dev/sda
 $ sudo reboot
-$ sudo ros install -c https://raw.githubusercontent.com/li_zhixin/rancheros/main/cloud-config.yml -d /dev/sda -a rancher.password=rancher
+$ sudo ros install -c https://raw.githubusercontent.com/li-zhixin/rancheros/main/cloud-config.yml -d /dev/sda -a rancher.password=rancher
 $ sudo halt
 ```
 
