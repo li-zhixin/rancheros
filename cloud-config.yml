@@ -3,6 +3,7 @@
 hostname: rancher-os
 
 rancher:
+  console: ubuntu
   network:
     interfaces:
       eth0:
