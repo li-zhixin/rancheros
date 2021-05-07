@@ -19,8 +19,10 @@ ssh_authorized_keys:
 runcmd:
   - apt update
   - apt -y install docker-compose git
-  - sed -i 's/PermitRootLogin no/permitrootlogin yes/' /etc/ssh/sshd_config.tpl 
-  - sed -i 's/AllowGroups docker/AllowGroups docker root/' /etc/ssh/sshd_config.tpl 
+  - sed -i 's/PermitRootLogin no/permitrootlogin yes/' /etc/ssh/sshd_config.tpl
+  - sed -i 's/AllowGroups docker/AllowGroups docker root/' /etc/ssh/sshd_config.tpl
+  - sed -i 's/PermitRootLogin no/permitrootlogin yes/' /etc/ssh/sshd_config
+  - sed -i 's/AllowGroups docker/AllowGroups docker root/' /etc/ssh/sshd_config
 
 write_files:
   - path: /etc/docker/certs.d/xa-dd3-rancher-master.grapecity.net/ca.crt
