@@ -12,9 +12,58 @@ rancher:
       nameservers:
       - 10.32.0.8
       - 10.32.0.18
+      
 ssh_authorized_keys:
   - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC7yeGuAh7Vbcy9TdBsUFgW9QGTfUlhCiac9vl+LRasqH5i38C5bZDLtKu7U2BWM/RtGkllEpUAWe2IZR86HYcFd2uj6f63fHPzjSCYFP6oufyF4jyNG1CpxodnLG3sh05iAHqIaBW1e65Y2V5wPH30niOqFiLER9nRMQHVnl/1Lc2zpBDLDSxW0E8gswryn5qC2hVnTN8iVzutAsTP56Lrf4Y8EFqf5WPaTiqQNtcBYC8RVQYblwYdharyADaszHd0ajRVGGv0ykl3+yjWeYQqgjVdlLRjwiSMtA9EAQ7YzCy01XIVMg7fMV9v6v1NUEGazZ2PegK1kD6E1p7FNus+yGXEeEfz3uGGS9Zlvyez9BXN2ieYbx9bycutHprS5gmm2vr2HdHzBPnkyDMoh3aaOVDAelzFxe1zzVK01C7Ei7ybxaqmqC4Qe/24E9cj7goqLSMfrkQO7b70cHDNqUQiX2RGo1MLEOeg/aG6fVOl6WDzO6HJp5A6OgZ5k3zldrk= lizhixin@xa-dd3-cruzliu
 
 runcmd:
   - apt update
   - apt -y install docker-compose git
+  - sed -i 's/PermitRootLogin no/permitrootlogin yes/' /etc/ssh/sshd_config.tpl 
+  - sed -i 's/AllowGroups docker/AllowGroups docker root/' /etc/ssh/sshd_config.tpl 
+
+write_files:
+  - path: /etc/docker/certs.d/xa-dd3-rancher-master.grapecity.net/ca.crt
+    permissions: "0644"
+    owner: root
+    content: |
+      -----BEGIN CERTIFICATE-----
+      MIIDejCCAmKgAwIBAgIUGK0kXzo1322dX0jalV+znhFjf9wwDQYJKoZIhvcNAQEL
+      BQAwITELMAkGA1UEBhMCQ04xEjAQBgNVBAMMCWNhdHRsZS1jYTAeFw0yMTA0Mjkw
+      MDU0NDhaFw0zMTA0MjcwMDU0NDhaMDsxCzAJBgNVBAYTAkNOMSwwKgYDVQQDDCN4
+      YS1kZDMtcmFuY2hlci1tYXN0ZXIuZ3JhcGVjaXR5Lm5ldDCCASIwDQYJKoZIhvcN
+      AQEBBQADggEPADCCAQoCggEBAMx98EQvqgA4VGh47vqmIvAS3SwMmCuiGEfYClrl
+      6xMpNeABsgUGUEJp+TsZUJ5hx3OB9+FkvBATAgjTGv7DifovrhaJOx39WN1CHoB8
+      jOZjUVoVVcd5BfSk1HcFPzuQxvZa8W0I5WNOVCzAtLa+Bry0AbGbRm8hxtH05QH9
+      btMv6V7BtsLlhT/QWLXDoG9+o/oKPicUgnzWZ1a0msOrApniYYvMfUmI5YU+7qZd
+      /Gu/aIrE/UCIArI/m0EfZumHj6T3/j1098/6wYV2FAeM6zzhFNS1ProDxyH+dt22
+      49nJrfKur7itgznPRuXG3cmdQWLYjohzSa/R+awGX+95apECAwEAAaOBjzCBjDAJ
+      BgNVHRMEAjAAMAsGA1UdDwQEAwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYB
+      BQUHAwEwUwYDVR0RBEwwSoIjeGEtZGQzLXJhbmNoZXItbWFzdGVyLmdyYXBlY2l0
+      eS5uZXSCI3hhLWRkMy1yYW5jaGVyLW1hc3Rlci5ncmFwZWNpdHkubmV0MA0GCSqG
+      SIb3DQEBCwUAA4IBAQB9QPi7TYuirA5kvVf7ofdXFoNI625vMIHHvKjZ7o+8XAV6
+      8Mrf7Jx4PHiwHrszfITpOw/ABP7SmOzuNB9nVvfXj/V0YUDG08oEVVPaK88GEMUa
+      6QxrR8e5d05shMQ9h82mfCv0gOzFb01wR00ut3d4v5YgxK4qK3r5GIxoFqfa42Rs
+      +ieJtQ98c4Yfy493gLBg3C1hha6PucS93pA+/7oS4kv1pnIsk360wJUFD6G71k/K
+      VWMl6dfS8ZjDKOUO1V2W50e0ha9kpLwCbslLGzV61cUfyFO0mXt0ZTrFVAeOcKpI
+      Byjf5Ysu44LSxbD1JXIIOrBlxEke5DtdIJftybtM
+      -----END CERTIFICATE-----
+      -----BEGIN CERTIFICATE-----
+      MIIDIzCCAgugAwIBAgIUf5qSS1Ly/8+eaaJSPU8qX4QlNj0wDQYJKoZIhvcNAQEL
+      BQAwITELMAkGA1UEBhMCQ04xEjAQBgNVBAMMCWNhdHRsZS1jYTAeFw0yMTA0Mjkw
+      MDU0NDdaFw0zMTA0MjcwMDU0NDdaMCExCzAJBgNVBAYTAkNOMRIwEAYDVQQDDAlj
+      YXR0bGUtY2EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDSDbyrY9ac
+      xyM8XQBKYr1snImhT/tH7sDmVVpSBU+64dpDUlpbzV+Mudl5nj5YamE+kgKRSk7M
+      5yCu3vRnxEV2tE7mX//GYC1mOluBmSf6t1ZCmoZNeJKx1Io809CFe6tweqwFXDIg
+      IVDdGWsVV0s5HFaWE4HL+KdK2Nuj81HmO9IClkjax6+qq8g48s9qWZ6v1l9MY3rx
+      9MoXbSFPYC4YSQh6hEixtoSD28WBQm5wWey3njLRr6UhSfximlrV2CnzNmPRiwqT
+      g048RTHdmGtO59SF2HA99n/La5rEzHs64A9ITXj7UmSutIu9oWhX7uulnGLZrzQ5
+      eEEmjuYPsRyXAgMBAAGjUzBRMB0GA1UdDgQWBBQtKOd+3p/LQ+coBRssoSj82t9w
+      VTAfBgNVHSMEGDAWgBQtKOd+3p/LQ+coBRssoSj82t9wVTAPBgNVHRMBAf8EBTAD
+      AQH/MA0GCSqGSIb3DQEBCwUAA4IBAQDEAlxMUmaNCZtT1qXJivleFe3yjMhC1IDL
+      8qxIPT6p//k61oR3EfxqkKxXabT6SbMb194PMRPSd+VgagopWFrnlUEgXzVZ6/vZ
+      sTKXCfi0v+AvKt/RtCUbeyrxBz+piGUi60gTpceYs4m6NIuk6ytUQ/y1X3e4lDsL
+      gx3w5Rdf3XByfQSeSmkYUADn0bU3rJoZWIzRUohQuQs6hacfCR+R21RVVdwanmT+
+      Zvp5MQznZpXcjJ2vFaAmMkcFv06Ysy2hW7ikaxUFT9VDpfUWkbfs32o1mMu0frrR
+      NxuS7zcCohNIzmTIayEO+OvN8DwG4RgE0q343uNJV/nGq9E6wu3i
+      -----END CERTIFICATE-----
