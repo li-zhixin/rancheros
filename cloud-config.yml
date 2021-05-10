@@ -24,6 +24,9 @@ runcmd:
   - sed -i 's/PermitRootLogin no/permitrootlogin yes/' /etc/ssh/sshd_config
   - sed -i 's/AllowGroups docker/AllowGroups docker root/' /etc/ssh/sshd_config
   - echo 'root:xA123456' | chpasswd
+  - mkdir -p /mnt/dockershare
+mounts:
+  - ["xa-dd3-freenas.grapecity.net:/mnt/AutoTest", "/mnt/dockershare", "nfs", ""]
 
 write_files:
   - path: /etc/docker/certs.d/xa-dd3-rancher-master.grapecity.net/ca.crt
