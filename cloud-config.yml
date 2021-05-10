@@ -33,7 +33,6 @@ write_files:
       mkdir -p /mnt/dockershare
       /etc/init.d/rpcbind start
       mount -t nfs -o vers=3 xa-dd3-freenas.grapecity.net:/mnt/AutoTest /mnt/dockershare
-      docker run -d -p 9001:9001 --name portainer_agent --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:/var/lib/docker/volumes portainer/agent
   - path: /etc/docker/certs.d/xa-dd3-rancher-master.grapecity.net/ca.crt
     permissions: "0644"
     owner: root
