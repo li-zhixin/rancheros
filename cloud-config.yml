@@ -32,7 +32,7 @@ write_files:
       #!/bin/bash
       mkdir -p /mnt/dockershare
       /etc/init.d/rpcbind start
-      sudo mount -t nfs -o vers=3 xa-dd3-freenas.grapecity.net:/mnt/AutoTest /mnt/dockershare
+      mount -t nfs -o vers=3 xa-dd3-freenas.grapecity.net:/mnt/AutoTest /mnt/dockershare
   - path: /etc/docker/certs.d/xa-dd3-rancher-master.grapecity.net/ca.crt
     permissions: "0644"
     owner: root
