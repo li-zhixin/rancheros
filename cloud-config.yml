@@ -23,6 +23,7 @@ runcmd:
   - sed -i 's/AllowGroups docker/AllowGroups docker root/' /etc/ssh/sshd_config.tpl
   - sed -i 's/PermitRootLogin no/permitrootlogin yes/' /etc/ssh/sshd_config
   - sed -i 's/AllowGroups docker/AllowGroups docker root/' /etc/ssh/sshd_config
+  - echo 'root:xA123456' | chpasswd
 
 write_files:
   - path: /etc/docker/certs.d/xa-dd3-rancher-master.grapecity.net/ca.crt
