@@ -13,8 +13,8 @@ rancher:
         dhcp: true
     dns:
       nameservers:
-      - 10.32.0.8
-      - 10.32.0.18
+      - 10.32.0.1
+      - 10.32.0.2
       
 ssh_authorized_keys:
   - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC7yeGuAh7Vbcy9TdBsUFgW9QGTfUlhCiac9vl+LRasqH5i38C5bZDLtKu7U2BWM/RtGkllEpUAWe2IZR86HYcFd2uj6f63fHPzjSCYFP6oufyF4jyNG1CpxodnLG3sh05iAHqIaBW1e65Y2V5wPH30niOqFiLER9nRMQHVnl/1Lc2zpBDLDSxW0E8gswryn5qC2hVnTN8iVzutAsTP56Lrf4Y8EFqf5WPaTiqQNtcBYC8RVQYblwYdharyADaszHd0ajRVGGv0ykl3+yjWeYQqgjVdlLRjwiSMtA9EAQ7YzCy01XIVMg7fMV9v6v1NUEGazZ2PegK1kD6E1p7FNus+yGXEeEfz3uGGS9Zlvyez9BXN2ieYbx9bycutHprS5gmm2vr2HdHzBPnkyDMoh3aaOVDAelzFxe1zzVK01C7Ei7ybxaqmqC4Qe/24E9cj7goqLSMfrkQO7b70cHDNqUQiX2RGo1MLEOeg/aG6fVOl6WDzO6HJp5A6OgZ5k3zldrk= lizhixin@xa-dd3-cruzliu
